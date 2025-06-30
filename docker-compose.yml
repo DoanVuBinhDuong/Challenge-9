@@ -1,0 +1,32 @@
+version: '3.8'
+
+services:
+  # PostgreSQL (có thể xóa nếu không dùng nữa)
+  # postgres:
+  #   image: postgres:15
+  #   container_name: docbao_postgres
+  #   environment:
+  #     POSTGRES_DB: docbao_db
+  #     POSTGRES_USER: docbao_user
+  #     POSTGRES_PASSWORD: docbao_password
+  #   ports:
+  #     - "5432:5432"
+  #   volumes:
+  #     - postgres_data:/var/lib/postgresql/data
+  #   restart: unless-stopped
+
+  mongodb:
+    image: mongo:7
+    container_name: docbao_mongo
+    ports:
+      - "27017:27017"
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: docbao_user
+      MONGO_INITDB_ROOT_PASSWORD: docbao_password
+    volumes:
+      - mongo_data:/data/db
+    restart: unless-stopped
+
+volumes:
+  # postgres_data:
+  mongo_data:
